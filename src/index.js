@@ -56,16 +56,14 @@ function Name(props) {
   const { state, setState } = useContext(AppContext);
 
   useEffect(() => {
-    if (props.value !== null) {
-      handleUpdate();
+    function handleUpdate() {
+      if (props.value !== null && props.value !== state.name) {
+        setState({ ...state, name: props.value });
+      }
     }
-  }, []);
 
-  const handleUpdate = () => {
-    if (props.value !== state.name) {
-      setState({ ...state, name: props.value });
-    }
-  };
+    handleUpdate();
+  }, [props.value, state, setState]);
 
   return <h2> Hello {state.name}</h2>;
 }
@@ -74,16 +72,14 @@ function Text(props) {
   const { state, setState } = useContext(AppContext);
 
   useEffect(() => {
-    if (props.value !== null) {
-      handleUpdate();
+    function handleUpdate() {
+      if (props.value !== null && props.value !== state.text) {
+        setState({ ...state, text: props.value });
+      }
     }
-  }, []);
 
-  const handleUpdate = () => {
-    if (props.value !== state.text) {
-      setState({ ...state, text: props.value });
-    }
-  };
+    handleUpdate();
+  }, [props.value, state, setState]);
 
   return <p>{state.text}</p>;
 }
